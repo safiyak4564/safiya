@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <body>
+
+  <header style="background-color: #f5f9f9; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;">
+    <img src="logo.webp" alt="Bluestock Logo" style="height: 50px;" />
+    <nav style="display: flex; gap: 20px; color: white;">
+      <a href="#" style="color: rgb(6, 4, 4); text-decoration: none;">PRODUCTS</a>
+      <a href="#" style="color: black; text-decoration: none;">PRICING</a>
+      <a href="#" style="color: black; text-decoration: none;">COMMUNITY</a>
+      <a href="#" style="color: black; text-decoration: none;">MEDIA</a>
+      <a href="#" style="color: rgb(6, 4, 4); text-decoration: none;">SUPPORT</a>
+      <a href="#" style="color:rgb(6, 4, 4); text-decoration: none;">Sign In</a>
+      <a href="#" style="color: #fff; background-color: #6e41ff; padding: 5px 10px; border-radius: 4px; text-decoration: none;">Sign Up Now</a>
+    </nav>
+  </header>
+
+  <div class="header">
+    <h1>Bluestock - NIFTY 50</h1>
+  </div>
+
+  <!-- Rest of your status bar, filters, and table stay the same... -->
+    <div class="status-bar">
+        Today Market has Closed as on 09 Jan 2024 16:00:00 IST |
+        <span style="color:green"> Advances: 30 </span> |
+        <span style="color:red"> Declines: 20 </span> |
+        <span> Unchanged: 0 </span>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bluestock - Analytics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .status-bar {
+      background-color: #ffe5e5;
+      color: #e60000;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-left: 5px solid red;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    .highlight {
+      background-color: #ffe5e5;
+      font-weight: bold;
+      color: #d60000;
+    }
+
+    .graph-link {
+      color: #d60000;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Bluestock - NIFTY 50</h1>
+  </div>
+
+  <div class="status-bar">
+    Today Market has Closed as on 09 Jan 2024 16:00:00 IST |
+    <span style="color:green"> Advances: 30 </span> |
+    <span style="color:red"> Declines: 20 </span> |
+    <span> Unchanged: 0 </span>
+  </div>
+
+  <div class="filters">
+    <input type="text" id="companyFilter" placeholder="Filter by Company" />
+    <input type="text" id="valueFilter" placeholder="Filter by Value (in Cr)" />
+  </div>
+
+  <table id="stockTable">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>OPEN</th>
+        <th>HIGH</th>
+        <th>LOW</th>
+        <th>PREV. CLOSE</th>
+        <th>LTE</th>
+        <th>CHNG</th>
+        <th>%CHNG</th>
+        <th>VOLUME</th>
+        <th>VALUE (₹ Cr)</th>
+        <th>52W H</th>
+        <th>52W L</th>
+        <th>30 D %CHNG</th>
+        <th>TODAY</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Sample rows -->
+      <tr>
+        <td class="highlight">Apple</td>
+        <td>21456.00</td>
+        <td>21465.00</td>
+        <td>21455.00</td>
+        <td>21455.00</td>
+        <td>21459.00</td>
+        <td>73.98</td>
+        <td>4.36</td>
+        <td>238998190</td>
+        <td>209.59</td>
+        <td>21834.35</td>
+        <td>16833.75</td>
+        <td>9.10</td>
+        <td><span class="graph-link">graph</span></td>
+      </tr>
+      <!-- Duplicate this row or dynamically add more -->
+    </tbody>
+  </table>
+
+  <script>
+    const companyInput = document.getElementById("companyFilter");
+    const valueInput = document.getElementById("valueFilter");
+    const table = document.getElementById("stockTable").getElementsByTagName("tbody")[0];
+
+    function filterTable() {
+      const companyFilter = companyInput.value.toLowerCase();
+      const valueFilter = valueInput.value;
+
+      Array.from(table.rows).forEach(row => {
+        const company = row.cells[0].textContent.toLowerCase();
+        const value = row.cells[9].textContent;
+
+        const matchesCompany = company.includes(companyFilter);
+        const matchesValue = value.includes(valueFilter);
+
+        if (matchesCompany && matchesValue) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    companyInput.addEventListener("keyup", filterTable);
+    valueInput.addEventListener("keyup", filterTable);
+  </script>
+
+</body>
+</html>
+<!-- End of HTML -->
+<!--    
