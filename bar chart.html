@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bar Charts Info</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7faff;
+      color: #002244;
+    }
+
+    header {
+      background-color: #5d16ae;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-section {
+      padding: 30px;
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      margin-top: 20px;
+    }
+
+    .info-section .green {
+      color: green;
+      font-weight: bold;
+    }
+
+    .info-section .blue {
+      color: blue;
+      font-weight: bold;
+    }
+
+    .info-section .red {
+      color: red;
+      font-weight: bold;
+    }
+
+    .chart-area {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .bar {
+      width: 30px;
+      height: 150px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 2px solid black;
+      border-right: 2px solid black;
+      transform: scaleY(0);
+      transition: transform 0.8s ease-in-out;
+    }
+
+    .green-bar {
+      background: linear-gradient(to top, #c7f0c4, #34a853);
+    }
+
+    .red-bar {
+      background: linear-gradient(to top, #fbcaca, #ea4335);
+    }
+
+    .blue-bar {
+      background: linear-gradient(to top, #cfe8ff, #4285f4);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Understanding Bar Charts</h1>
+  </header>
+
+  <section class="info-section">
+    <p>
+      A <strong>bar chart</strong> is comprised of a series of bars. Every bar has four important price points -
+      <strong>open</strong>, <strong>close</strong>, <strong>high</strong>, and <strong>low</strong>. The bars are represented
+      in <span class="green">green</span> or <span class="blue">blue</span> color when <em>close</em> is higher than
+      <em>open</em> and in <span class="red">red</span> color when <em>close</em> is lower than <em>open</em>.
+    </p>
+    <p>
+      The bar charts are more detailed than the line chart and are good for demonstrating or spotting the classical price patterns.
+    </p>
+    <p><em>We will discuss the classical chart patterns in appropriate time.</em></p>
+  </section>
+
+  <section class="chart-area">
+    <div class="bar green-bar"></div>
+    <div class="bar red-bar"></div>
+    <div class="bar blue-bar"></div>
+  </section>
+
+  <script>
+    document.querySelectorAll('.bar').forEach(bar => {
+      bar.style.transform = 'scaleY(0)';
+      bar.style.transition = 'transform 0.8s ease-in-out';
+    });
+
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.bar').forEach(bar => {
+        bar.style.transform = 'scaleY(1)';
+      });
+    });
+  </script>
+</body>
+
+</html>
